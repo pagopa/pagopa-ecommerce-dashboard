@@ -1,0 +1,9 @@
+oa3_spec: https://github.com/pagopa/pagopa-infra/blob/main/src/domains/ecommerce-app/api/ecommerce-checkout/v1/_openapi.json.tpl # If start with http the file would be downloaded from the internet
+name: opex_pagopa-ecommerce-checkout-dashboard
+location: West Europe
+timespan: 5m # Default, a number or a timespan https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/scalar-data-types/timespan
+data_source: /subscriptions/bbe47ad4-08b3-4925-94c5-1278e5819b86/resourceGroups/pagopa-d-api-rg/providers/Microsoft.ApiManagement/service/pagopa-d-apim
+resource_type: api-management
+overrides:
+  hosts: # Use these hosts instead of those inside the OpenApi spec
+    - api.dev.platform.pagopa.it
