@@ -2,14 +2,22 @@ name: Create Dashboard
 
 # Controls when the workflow will run
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/create_dashboard.yaml'
-      - '.opex/**'
-
   workflow_dispatch:
+    inputs:
+      api-name:
+        description: 'Api name for which create dashboards and alerts'
+        required: true
+        type: choice
+        options:
+          - ecommerce-checkout
+      environment:
+        description: 'Environment for which create dashboards and alerts'
+        required: true
+        type: choice
+        options:
+          - dev
+          - uat
+          - prod
 
 env:
   TEMPLATE_DIR: azure-dashboard
@@ -31,7 +39,7 @@ jobs:
         api-name:
           - ecommerce-checkout
     environment:
-      name: ${{ matrix.environment }}
+      name: ${{ inputs.environment }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout
@@ -45,9 +53,9 @@ jobs:
       # from https://github.com/pagopa/opex-dashboard-azure-action/commits/main
       - uses: pagopa/opex-dashboard-azure-action@ece3bc2b133be74cabb50aec14cdb9b8051b886f
         with:
-          environment: ${{ matrix.environment }}
-          api-name: ${{ matrix.api-name }}
-          config: .opex/${{ matrix.api-name }}/env/${{ matrix.environment }}/config.yaml
+          environment: ${{ inputs.environment }}
+          api-name: ${{ inputs.api-name }}
+          config: .opex/${{ inputs.api-name }}/env/${{ inputs.environment }}/config.yaml
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
