@@ -62,8 +62,14 @@ jobs:
       # from https://github.com/pagopa/opex-dashboard-azure-action/commits/main
       - uses: pagopa/opex-dashboard-azure-action@ece3bc2b133be74cabb50aec14cdb9b8051b886f
         with:
-          template: ${{ env.TEMPLATE_DIR }}
+          environment: ${{ matrix.environment }}
+          api-name: "ecommerce-checkout"
           config: .opex/env/${{ matrix.environment }}/config.yaml
+          client-id: ${{ secrets.CLIENT_ID }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
+          # from https://github.com/pagopa/opex-dashboard-azure-action/pkgs/container/opex-dashboard-azure-action
+          docker-version: sha256:d9465f04e469c8f65bb1fb21cb9688508c64fda75495f552e858fb5a9580be90
 
       # we need to set env variables in the folder /azure-dashboard
       - name: Copy Environments
