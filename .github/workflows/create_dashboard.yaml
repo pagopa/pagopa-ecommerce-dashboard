@@ -39,7 +39,7 @@ jobs:
         api-name:
           - ecommerce-checkout
     environment:
-      name: ${{ workflow_dispatch.inputs.environment }}
+      name: ${{ inputs.environment }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout
@@ -53,9 +53,9 @@ jobs:
       # from https://github.com/pagopa/opex-dashboard-azure-action/commits/main
       - uses: pagopa/opex-dashboard-azure-action@ece3bc2b133be74cabb50aec14cdb9b8051b886f
         with:
-          environment: ${{ workflow_dispatch.inputs.environment }}
-          api-name: ${{ workflow_dispatch.inputs.api-name }}
-          config: .opex/${{ workflow_dispatch.inputs.api-name }}/env/${{ workflow_dispatch.inputs.environment }}/config.yaml
+          environment: ${{ inputs.environment }}
+          api-name: ${{ inputs.api-name }}
+          config: .opex/${{ inputs.api-name }}/env/${{ inputs.environment }}/config.yaml
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
