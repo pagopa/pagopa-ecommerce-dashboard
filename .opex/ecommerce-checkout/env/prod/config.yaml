@@ -1,4 +1,4 @@
-oa3_spec: https://github.com/pagopa/pagopa-infra/blob/main/src/domains/ecommerce-app/api/ecommerce-checkout/v1/_openapi.json.tpl # If start with http the file would be downloaded from the internet
+oa3_spec: https://raw.githubusercontent.com/pagopa/pagopa-infra/d6d01e9c0113fab474f5e7221e0e00b28bb9d1ac/src/domains/ecommerce-app/api/ecommerce-checkout/v1/_openapi.json.tpl # If start with http the file would be downloaded from the internet
 name: opex_pagopa-ecommerce-checkout-dashboard
 location: West Europe
 timespan: 5m # Default, a number or a timespan https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/scalar-data-types/timespan

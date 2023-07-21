@@ -26,7 +26,10 @@ jobs:
 
     strategy:
       matrix:
-        environment: [dev]
+        environment:
+          - dev
+        api-name:
+          - ecommerce-checkout
     environment:
       name: ${{ matrix.environment }}
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -43,8 +46,8 @@ jobs:
       - uses: pagopa/opex-dashboard-azure-action@ece3bc2b133be74cabb50aec14cdb9b8051b886f
         with:
           environment: ${{ matrix.environment }}
-          api-name: "ecommerce-checkout"
-          config: .opex/ecommerce-checkout/env/${{ matrix.environment }}/config.yaml
+          api-name: ${{ matrix.api-name }}
+          config: .opex/${{ matrix.api-name }}/env/${{ matrix.environment }}/config.yaml
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
