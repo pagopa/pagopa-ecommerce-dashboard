@@ -49,8 +49,8 @@ jobs:
         id: read_parameters
         uses: actions/github-script@v6.3.3
         env:
-          API_NAME_WEBHOOK: ${{ event.repository_dispatch.client_payload.api-name }}
-          ENVIRONMENT_WEBHOOK: ${{ event.repository_dispatch.client_payload.environment }}
+          API_NAME_WEBHOOK: ${{ github.event.client_payload.api-name }}
+          ENVIRONMENT_WEBHOOK: ${{ github.event.client_payload.environment }}
           API_NAME_MANUAL: ${{ inputs.api-name }}
           ENVIRONMENT_MANUAL: ${{ inputs.environment }}
         with:
