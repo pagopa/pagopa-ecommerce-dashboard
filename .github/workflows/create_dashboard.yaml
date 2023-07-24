@@ -76,7 +76,7 @@ jobs:
       - uses: pagopa/opex-dashboard-azure-action@ece3bc2b133be74cabb50aec14cdb9b8051b886f
         with:
           environment: ${{ steps.read_parameters.outputs.environment }}
-          api-name: ${{ steps.read_parameters.outputs.api-name }}
+          api-name: ${{ steps.read_parameters.outputs.apiName }}
           config: .opex/${{ steps.read_parameters.outputs.api-name }}/env/${{ steps.read_parameters.outputs.environment }}/config.yaml
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
