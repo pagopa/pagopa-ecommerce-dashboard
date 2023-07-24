@@ -60,23 +60,22 @@ jobs:
           API_NAME_MANUAL: ${{ inputs.environment.api-name }}
           ENVIRONMENT_MANUAL: ${{ inputs.environment.environment }}
         with:
-         github-token: ${{ secrets.GITHUB_TOKEN }}
-         script: |
-           const { API_NAME_WEBHOOK, ENVIRONMENT_WEBHOOK, API_NAME_MANUAL, ENVIRONMENT_MANUAL } = process.env
-            var apiName = API_NAME_WEBHOOK.trim();
-            var environment = ENVIRONMENT_WEBHOOK.trim();
-            if (!apiName || !environment) {
-            core.info(`No parameters found inside repository dispatch event, checking workflow parameters...`);
-            apiName = API_NAME_MANUAL.trim();
-            environment = ENVIRONMENT_MANUAL.trim();
-          }
-          core.info(`Api name ${apiName}, environment: ${environment}`);
-            if (!apiName || !environment) {
-            throw `Could not create dashboard, cannot find parameters...`;
-          }
-            core.setOutput("apiName", apiName);
-            core.setOutput("environment", environment);
-          
+          script: |
+             const { API_NAME_WEBHOOK, ENVIRONMENT_WEBHOOK, API_NAME_MANUAL, ENVIRONMENT_MANUAL } = process.env
+              var apiName = API_NAME_WEBHOOK.trim();
+              var environment = ENVIRONMENT_WEBHOOK.trim();
+              if (!apiName || !environment) {
+              core.info(`No parameters found inside repository dispatch event, checking workflow parameters...`);
+              apiName = API_NAME_MANUAL.trim();
+              environment = ENVIRONMENT_MANUAL.trim();
+              }
+              core.info(`Api name ${apiName}, environment: ${environment}`);
+                if (!apiName || !environment) {
+                throw `Could not create dashboard, cannot find parameters...`;
+              }
+                core.setOutput("apiName", apiName);
+                core.setOutput("environment", environment);
+            
 
       # this action create a folder named /azure-dashboard
       # from https://github.com/pagopa/opex-dashboard-azure-action/commits/main
