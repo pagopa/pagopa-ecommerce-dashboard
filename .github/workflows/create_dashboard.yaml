@@ -15,7 +15,7 @@ on:
         required: true
         type: choice
         options:
-          - dev
+          - prod
   repository_dispatch:
     types:
       - create-dashboard
