@@ -35,12 +35,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-22.04
 
-    strategy:
-      matrix:
-        environment:
-          - dev
-        api-name:
-          - ecommerce-checkout
     environment:
       name: ${{ inputs.environment }}
     # Steps represent a sequence of tasks that will be executed as part of the job
