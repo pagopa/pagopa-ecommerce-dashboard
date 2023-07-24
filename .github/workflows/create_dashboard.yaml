@@ -51,14 +51,39 @@ jobs:
         uses: actions/checkout@1f9a0c22da41e6ebfa534300ef656657ea2c6707
         with:
           persist-credentials: false
+      - name: Read create dashboard parameters
+        id: read_parameters
+        uses: actions/github-script@v6.3.3
+        env:
+          API_NAME_WEBHOOK: ${{ github.event.repository_dispatch.client_payload.api-name }}
+          ENVIRONMENT_WEBHOOK: ${{ github.event.repository_dispatch.client_payload.environment }}
+          API_NAME_MANUAL: ${{ inputs.environment.api-name }}
+          ENVIRONMENT_MANUAL: ${{ inputs.environment.environment }}
+        with:
+         script: |
+           const { API_NAME_WEBHOOK, ENVIRONMENT_WEBHOOK, API_NAME_MANUAL, ENVIRONMENT_MANUAL } = process.env
+            var apiName = API_NAME_WEBHOOK.trim();
+            var environment = ENVIRONMENT_WEBHOOK.trim();
+            if (!apiName || !environment) {
+            core.info(`No parameters found inside repository dispatch event, checking workflow parameters...`);
+            apiName = API_NAME_MANUAL.trim();
+            environment = ENVIRONMENT_MANUAL.trim();
+          }
+          core.info(`Api name ${apiName}, environment: ${environment}`);
+            if (!apiName || !environment) {
+            throw `Could not create dashboard, cannot find parameters...`;
+          }
+            core.setOutput("apiName", apiName);
+            core.setOutput("environment", environment);
+          
 
       # this action create a folder named /azure-dashboard
       # from https://github.com/pagopa/opex-dashboard-azure-action/commits/main
       - uses: pagopa/opex-dashboard-azure-action@ece3bc2b133be74cabb50aec14cdb9b8051b886f
         with:
-          environment: ${{ inputs.environment }}
-          api-name: ${{ inputs.api-name }}
-          config: .opex/${{ inputs.api-name }}/env/${{ inputs.environment }}/config.yaml
+          environment: ${{ steps.read_parameters.outputs.environment }}
+          api-name: ${{ steps.read_parameters.outputs.api-name }}
+          config: .opex/${{ steps.read_parameters.outputs.api-name }}/env/${{ steps.read_parameters.outputs.environment }}/config.yaml
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
