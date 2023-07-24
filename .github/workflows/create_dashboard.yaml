@@ -77,7 +77,7 @@ jobs:
         with:
           environment: ${{ steps.read_parameters.outputs.environment }}
           api-name: ${{ steps.read_parameters.outputs.apiName }}
-          config: .opex/${{ steps.read_parameters.outputs.api-name }}/env/${{ steps.read_parameters.outputs.environment }}/config.yaml
+          config: .opex/${{ steps.read_parameters.outputs.apiName }}/env/${{ steps.read_parameters.outputs.environment }}/config.yaml
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
