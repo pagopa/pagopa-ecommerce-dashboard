@@ -18,6 +18,9 @@ on:
           - dev
           - uat
           - prod
+  repository_dispatch:
+    types:
+      - create-dashboard
 
 env:
   TEMPLATE_DIR: azure-dashboard
