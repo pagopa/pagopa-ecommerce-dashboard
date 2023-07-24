@@ -16,8 +16,6 @@ on:
         type: choice
         options:
           - dev
-          - uat
-          - prod
   repository_dispatch:
     types:
       - create-dashboard
