@@ -60,6 +60,7 @@ jobs:
           API_NAME_MANUAL: ${{ inputs.environment.api-name }}
           ENVIRONMENT_MANUAL: ${{ inputs.environment.environment }}
         with:
+         github-token: ${{ secrets.GITHUB_TOKEN }}
          script: |
            const { API_NAME_WEBHOOK, ENVIRONMENT_WEBHOOK, API_NAME_MANUAL, ENVIRONMENT_MANUAL } = process.env
             var apiName = API_NAME_WEBHOOK.trim();
