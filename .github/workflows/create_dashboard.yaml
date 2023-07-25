@@ -74,10 +74,10 @@ jobs:
         run: |
           echo "📝 Replacing config yaml placeholders"
           echo "Properties to be set: $CONFIG_OPTIONS into file $CONFIG_FILE"
-          for property in $(echo $CONFIG_OPTIONS | yq -e -o shell -I=0); do
+          for property in $(echo $CONFIG_OPTIONS | yq -o shell); do
             IFS='=' read -r -a split <<< "$property"
             key=${split[0]}
-            value=${split[1]}
+            value=$(echo ${split[1]}|sed "s/'//g")
             echo "Replacing key: [$key] with value: [$value]"
             sed -i "s/\${$key}/$value/" $CONFIG_FILE
           done
