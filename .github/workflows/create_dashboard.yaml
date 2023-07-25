@@ -16,6 +16,11 @@ on:
         type: choice
         options:
           - prod
+      config-options:
+        description: 'JSON string containing env properties that will be replaced into opex config.yaml file before dashboard generation'
+        type: string
+        required: false
+
   repository_dispatch:
     types:
       - create-dashboard
@@ -47,23 +52,16 @@ jobs:
         id: read_parameters
         uses: actions/github-script@v6.3.3
         env:
-          API_NAME_WEBHOOK: ${{ github.event.client_payload.api-name }}
-          ENVIRONMENT_WEBHOOK: ${{ github.event.client_payload.environment }}
-          API_NAME_MANUAL: ${{ inputs.api-name }}
-          ENVIRONMENT_MANUAL: ${{ inputs.environment }}
+          API_NAME: ${{ github.event.client_payload.api-name || inputs.api-name }}
+          ENVIRONMENT: ${{ github.event.client_payload.environment || inputs.environment }}
         with:
           script: |
-             const { API_NAME_WEBHOOK, ENVIRONMENT_WEBHOOK, API_NAME_MANUAL, ENVIRONMENT_MANUAL } = process.env
-              var apiName = API_NAME_WEBHOOK.trim();
-              var environment = ENVIRONMENT_WEBHOOK.trim();
-              if (!apiName || !environment) {
-              core.info(`No parameters found inside repository dispatch event, checking workflow parameters...`);
-              apiName = API_NAME_MANUAL.trim();
-              environment = ENVIRONMENT_MANUAL.trim();
-              }
+             const { API_NAME, ENVIRONMENT } = process.env
+              var apiName = API_NAME.trim();
+              var environment = ENVIRONMENT.trim();
               core.info(`Api name ${apiName}, environment: ${environment}`);
                 if (!apiName || !environment) {
-                throw `Could not create dashboard, cannot find parameters...`;
+                throw `Could not create dashboard, cannot find parameters for api name and environment...`;
               }
                 core.setOutput("apiName", apiName);
                 core.setOutput("environment", environment);
