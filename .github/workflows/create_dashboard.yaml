@@ -69,17 +69,17 @@ jobs:
       - name: Replace opex config file parameters
         id: replace_opex_file_parameters
         env:
-          CONFIG-FILE: .opex/${{ steps.read_parameters.outputs.apiName }}/env/${{ steps.read_parameters.outputs.environment }}/config.yaml
-          CONFIG-OPTIONS: ${{ github.event.client_payload.config-options || inputs.config-options }}
+          CONFIG_FILE: .opex/${{ steps.read_parameters.outputs.apiName }}/env/${{ steps.read_parameters.outputs.environment }}/config.yaml
+          CONFIG_OPTIONS: ${{ github.event.client_payload.config-options || inputs.config-options }}
         run: |
           echo "📝 Replacing config yaml placeholders"
-          echo "Properties to be set: $CONFIG-OPTIONS into file $CONFIG-FILE"
-          for property in $(yq -o shell -I=0 $CONFIG-OPTIONS); do
+          echo "Properties to be set: $CONFIG_OPTIONS into file $CONFIG_FILE"
+          for property in $(yq -e -o shell -I=0 $CONFIG_OPTIONS); do
             IFS='=' read -r -a split <<< "$property"
             key=${split[0]}
             value=${split[1]}
             echo "Replacing key: [$key], value: [$value]"
-            sed -i "s/\${$key}/$value/" $CONFIG-FILE
+            sed -i "s/\${$key}/$value/" $CONFIG_FILE
           done
 
       # this action create a folder named /azure-dashboard
