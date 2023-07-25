@@ -81,6 +81,8 @@ jobs:
             echo "Replacing key: [$key], value: [$value]"
             sed -i "s/\${$key}/$value/" $CONFIG_FILE
           done
+          echo "Modified config file"
+          cat $CONFIG_FILE
 
       # this action create a folder named /azure-dashboard
       # from https://github.com/pagopa/opex-dashboard-azure-action/commits/main
