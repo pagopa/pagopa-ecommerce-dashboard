@@ -86,7 +86,7 @@ jobs:
 
       # this action create a folder named /azure-dashboard
       # from https://github.com/pagopa/opex-dashboard-azure-action/commits/main
-      - uses: pagopa/opex-dashboard-azure-action@94cfbbba72ea8e324aecb632989e1a6c5d9d2624
+      - uses: pagopa/opex-dashboard-azure-action@3ad80a5e4a2d5a8f342615637072f21b687320ce
         with:
           environment: ${{ steps.read_parameters.outputs.environment }}
           api-name: ${{ steps.read_parameters.outputs.apiName }}
@@ -95,4 +95,4 @@ jobs:
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
           # from https://github.com/pagopa/opex-dashboard-azure-action/pkgs/container/opex-dashboard-azure-action
-          docker-version: sha256:de7738b8d03b3818fe0585e8ee3d979a12ee33b4219ef592ebe9b8a306effd7d
+          docker-version: sha256:04d8ead53c772d23b094c2a395292dc159e6f2905e1b13b5f828f31eac6eb27f
