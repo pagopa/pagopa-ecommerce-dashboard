@@ -91,7 +91,7 @@ overrides:
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 2 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /carts/{id_cart}:
       availability_threshold: 0.95 # Default: 99%
