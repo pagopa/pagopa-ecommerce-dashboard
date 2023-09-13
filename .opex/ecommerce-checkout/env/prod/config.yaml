@@ -1,7 +1,7 @@
 oa3_spec: https://raw.githubusercontent.com/pagopa/pagopa-infra/${branch_ref}/src/domains/ecommerce-app/api/ecommerce-checkout/v1/_openapi.json.tpl # If start with http the file would be downloaded from the internet
 name: opex_pagopa-ecommerce-checkout-dashboard
 location: West Europe
-timespan: 5m # Default, a number or a timespan https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/scalar-data-types/timespan
+timespan: 15m # Default, a number or a timespan https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/scalar-data-types/timespan
 data_source: /subscriptions/b9fc9419-6097-45fe-9f74-ba0641c91912/resourceGroups/pagopa-p-vnet-rg/providers/Microsoft.Network/applicationGateways/pagopa-p-app-gw
 resource_type: app-gateway
 action_groups:
@@ -15,79 +15,79 @@ overrides:
     /payment-requests/{rpt_id}:
       availability_threshold: 0.8 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 3 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 3 # Default: 1
     /transactions:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 1 # Default: 1
       response_time_threshold: 1 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /transactions/{transactionId}:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 1 # Default: 1
       response_time_threshold: 1 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /transactions/{transactionId}/auth-requests:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 1 # Default: 1
       response_time_threshold: 1 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /payment-methods:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 2 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /payment-methods/{id}:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 2 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /payment-methods/{id}/fees:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 2 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /payment-methods/{id}/sessions:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 2 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /payment-methods/{id}/sessions/{sessionId}:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 2 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
@@ -96,18 +96,18 @@ overrides:
     /carts/{id_cart}:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 2 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
     /carts/{cart_id}/redirect:
       availability_threshold: 0.95 # Default: 99%
       availability_evaluation_frequency: 30 # Default: 10
-      availability_evaluation_time_window: 15 # Default: 20
+      availability_evaluation_time_window: 30 # Default: 20
       availability_event_occurrences: 3 # Default: 1
       response_time_threshold: 2 # Default: 1
       response_time_evaluation_frequency: 30 # Default: 10
-      response_time_evaluation_time_window: 15 # Default: 20
+      response_time_evaluation_time_window: 30 # Default: 20
       response_time_event_occurrences: 5 # Default: 1
